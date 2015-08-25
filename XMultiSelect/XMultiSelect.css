@@ -1,0 +1,32 @@
+.XMultiSelect
+{
+    position: relative;
+}
+.XMultiSelect .XMultiSelect_Header
+{
+    font-weight: bold;
+}
+.XMultiSelect .XMultiSelect_Box
+{
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #999;
+    left: 0;
+    /*padding: 5px 10px;*/
+    position: absolute;
+    /*top: 29px; set it's value in js */
+    /*width: 150px;  set it's value in js */
+    z-index: 9999;
+    overflow: auto;
+    display: none;
+    height: 200px;
+}
+.XMultiSelect .XMultiSelect_Box div
+{
+    padding:5px;
+    }
+.XMultiSelect .XMultiSelect_Box label
+{
+    width: 100%;
+    line-height: 30px;
+    float: left;
+}
