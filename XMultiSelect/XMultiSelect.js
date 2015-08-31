@@ -47,7 +47,7 @@
             //select click事件
             $body.on("click",$(_this).selector,function (e) {
                 if (!$panel.is(":visible")) {
-                    $panel.show();
+                    $panel.show("fast");
                     return false;
                 }
             });
@@ -81,6 +81,20 @@
                     var bodyops = _getGroupBodyOptionByHeader.call(this);
                     this.checked=(bodyops.length==bodyops.filter(":checked").length);
                 });
+            };
+
+            //根据当前值，选中body中的选项
+            var _setOptionCheckedStateByVal=function(){
+                $groupBodyOption.prop({"checked":false});
+                var vals=($(_this).val() || "").split(',');
+                if(vals && vals.length>0){
+                    for(var i=0;i<vals.length;i++){
+                        if(vals[i] !=""){
+                            $groupBodyOption.filter("[value='"+vals[i]+"']").prop({"checked":true});
+                        }
+                    }
+                }
+                refreshHeaderOptionCheckedState();
             };
 
             //非弹出层 click时隐藏弹出层
@@ -120,6 +134,7 @@
                     arrVal.push(dicModels[i].Val);
                 }
                 $(_this).html("<option value=\"" + arrVal.join(",") + "\" style=\"display:none;\">" + arrKey.join(",") + "</option>");
+                _setOptionCheckedStateByVal();
             };
 
             //清除value
@@ -139,7 +154,7 @@
             });
 
             //头部添加功能按钮（全选、全不选）
-            $panel.prepend("<div><a href='javascript:void(0);' class='XMultiSelect-SelectAll'>全选</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' class='XMultiSelect-Reverse'>反选</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' class='XMultiSelect-SelectNone'>全不选</a></div>");
+            $panel.prepend("<div class='XMultiSelect-Bar'><a href='javascript:void(0);' class='XMultiSelect-SelectAll'>全选</a><a href='javascript:void(0);' class='XMultiSelect-Reverse'>反选</a><a href='javascript:void(0);' class='XMultiSelect-SelectNone'>全不选</a></div>");
             $panel.on("click",".XMultiSelect-SelectAll",function(){
                 $groupOption.prop({"checked":true});
                 _createVal();

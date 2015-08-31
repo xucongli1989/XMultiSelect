@@ -2,6 +2,10 @@
 {
     position: relative;
 }
+.XMultiSelect .XMultiSelect-Bar a
+{
+    margin:3px;
+    }
 .XMultiSelect .XMultiSelect_Header
 {
     font-weight: bold;
@@ -11,10 +15,9 @@
     background: #fff none repeat scroll 0 0;
     border: 1px solid #999;
     left: 0;
-    /*padding: 5px 10px;*/
     position: absolute;
-    /*top: 29px; set it's value in js */
-    /*width: 150px;  set it's value in js */
+    /*top: 29px; set its value in js */
+    /*width: 150px;  set its value in js */
     z-index: 9999;
     overflow: auto;
     display: none;
