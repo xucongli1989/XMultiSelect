@@ -13,11 +13,32 @@
     </style>
     <script type="text/javascript">
         $(function () {
-            $("#selInsuranceCategory").XMultiSelect();
+            var $obj = $("#selInsuranceCategory").XMultiSelect();
+
+            $("#linkGetVal").on("click", function () {
+                alert($obj.GetVal());
+            });
+            $("#linkClear").on("click", function () {
+                $obj.ClearVal();
+            });
+            $("#linkSetVal").on("click", function () {
+                var val = $.parseJSON($("#txtVal").val()) || [];
+                $obj.SetVal(val);
+            });
         });
     </script>
 </head>
 <body>
+
+    <a href="javascript:void(0);" id="linkGetVal">获取已选值</a>
+    <br /><br />
+    <a href="javascript:void(0);" id="linkClear">清除值</a>
+    <br /><br />
+    <textarea id="txtVal" style="width:500px;height:100px;">[{"Key":"国内航意险20","Val":"1003"},{"Key":"国内阶梯航意险100","Val":"1007"}]</textarea>
+    <br />
+    <a href="javascript:void(0);" id="linkSetVal">设置值</a>
+    <br /><br />
+
     <select name="selInsuranceCategory" id="selInsuranceCategory" style="width: 200px;height:30px;"></select>
     <div xmultiselect-for="selInsuranceCategory">
         <div class="xgroupheader">

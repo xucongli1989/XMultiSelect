@@ -45,7 +45,7 @@
             };
 
             //select click事件
-            $(this).on("click", function (e) {
+            $body.on("click",$(_this).selector,function (e) {
                 if (!$panel.is(":visible")) {
                     $panel.show();
                     return false;
@@ -88,9 +88,9 @@
                 if ($panel.is(":visible")) {
                     var $et = $(e.target), flag = true;
                     if ($et[0] === $panel[0]) {
-                        flag = false;
+                        flag = false;//单击的对象就是panel
                     } else if ($et.closest("[XMultiSelect-For='" + id + "']")[0] === $panel[0]) {
-                        flag = false;
+                        flag = false;//单击的对象的所属容器是panel
                     }
                     if (flag) {
                         $panel.hide();
@@ -125,6 +125,7 @@
             //清除value
             var _clearVal = function () {
                 $(_this).html("<option value=\"\" style=\"display:none;\"></option>");
+                $groupOption.prop({"checked":false});
             };
 
             //获取value
@@ -166,7 +167,7 @@
                 },
                 //获取值
                 GetVal: function () {
-                    _getVal();
+                    return _getVal();
                 },
                 //清除值
                 ClearVal: function () {
