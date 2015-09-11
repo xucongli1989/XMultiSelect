@@ -1,7 +1,8 @@
 ﻿/**
-* select的多选插件
-* create by :xcl @20150707
+* select的多选插件 
 * github:https://github.com/xucongli1989/XMultiSelect
+* 当前版本：1.0
+* 更新时间：2015-09-11
 */
 ; (function ($) {
     var defaults = {
@@ -17,9 +18,11 @@
 
     $.fn.extend({
         XMultiSelect: function (options) {
-            var _this = this;
+            var _this = this,$this=$(this);
             var ops = $.extend({}, options, defaults);
-            var id = $(this).attr("id") || "";
+            var id = $this.attr("id") || "",name=$this.attr("name");
+            
+            var $hdThis=$("<input type='hidden' name='"+name+"' value=''/>");
             var $body = $("body");
             var $panel = $("[XMultiSelect-For='" + id + "']");
             var $groupOption = $panel.find(ops.OptionClass);
@@ -31,9 +34,10 @@
 
             //初始化布局
             $groupHeader.addClass("XMultiSelect_Header");
-            $panel.addClass("XMultiSelect_Box").css({"top":$(_this).css("height"),"width":$(_this).css("width")});
-            $(_this).html("<option value=\"\" style=\"display: none;\"></option>").wrap("<div class='XMultiSelect'></div>");
-            $(_this).parent().append($panel);
+            $panel.addClass("XMultiSelect_Box").css({"top":$this.outerHeight(true),"width":$this.outerWidth()});
+            $this.removeAttr("name").prop({"readonly":true});
+            $this.wrap("<div class='XMultiSelect'></div>").after($hdThis);
+            $this.parent().append($panel);
 
             //根据header的option返回对应body下的所有option（this为header的option）
             var _getGroupBodyOptionByHeader = function () {
@@ -45,7 +49,7 @@
             };
 
             //select click事件
-            $body.on("click",$(_this).selector,function (e) {
+            $body.on("click",$this.selector,function (e) {
                 if (!$panel.is(":visible")) {
                     $panel.show("fast");
                     return false;
@@ -86,7 +90,7 @@
             //根据当前值，选中body中的选项
             var _setOptionCheckedStateByVal=function(){
                 $groupBodyOption.prop({"checked":false});
-                var vals=($(_this).val() || "").split(',');
+                var vals=($hdThis.val() || "").split(',');
                 if(vals && vals.length>0){
                     for(var i=0;i<vals.length;i++){
                         if(vals[i] !=""){
@@ -98,7 +102,7 @@
             };
 
             //非弹出层 click时隐藏弹出层
-            $body.on("click", function (e) {
+            $(document).on("click", function (e) {
                 if ($panel.is(":visible")) {
                     var $et = $(e.target), flag = true;
                     if ($et[0] === $panel[0]) {
@@ -130,22 +134,24 @@
                 }
                 var arrKey = [], arrVal = [];
                 for (var i = 0; i < dicModels.length; i++) {
-                    arrKey.push(dicModels[i].Key);
+                    arrKey.push($.trim(dicModels[i].Key));
                     arrVal.push(dicModels[i].Val);
                 }
-                $(_this).html("<option value=\"" + arrVal.join(",") + "\" style=\"display:none;\">" + arrKey.join(",") + "</option>");
+                $this.val(arrKey.join(","));
+                $hdThis.val(arrVal.join(","));
                 _setOptionCheckedStateByVal();
             };
 
             //清除value
             var _clearVal = function () {
-                $(_this).html("<option value=\"\" style=\"display:none;\"></option>");
+                $this.val("");
+                $hdThis.val("");
                 $groupOption.prop({"checked":false});
             };
 
             //获取value
             var _getVal = function () {
-                return $(_this).val();
+                return $hdThis.val();
             };
 
             //单击option时给select设置值
