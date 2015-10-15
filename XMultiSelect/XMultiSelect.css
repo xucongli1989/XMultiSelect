@@ -1,6 +1,7 @@
 .XMultiSelect
 {
     position: relative;
+    line-height:normal;
 }
 .XMultiSelect .XMultiSelect-Bar a
 {
