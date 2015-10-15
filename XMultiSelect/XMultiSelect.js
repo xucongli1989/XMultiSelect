@@ -1,9 +1,15 @@
 ﻿/**
-* select的多选插件 
-* github:https://github.com/xucongli1989/XMultiSelect
-* 当前版本：1.0
-* 更新时间：2015-09-11
-*/
+ * ******************************************************************************************
+ * 1：基本信息：
+ * 开源协议：https://github.com/xucongli1989/XMultiSelect/blob/master/LICENSE
+ * 项目地址：https://github.com/xucongli1989/XMultiSelect
+ * 电子邮件：80213876@qq.com
+ * Create By: XCL @ 2015 in Shenzhen. China
+ ********************************************************************************************
+ * select的多选插件 
+ * 当前版本：1.0.1
+ * 更新时间：2015-10-15
+ */
 ; (function ($) {
     var defaults = {
         GroupHeaderClass: ".xgroupheader",
