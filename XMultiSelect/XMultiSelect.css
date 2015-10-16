@@ -34,3 +34,7 @@
     line-height: 30px;
     float: left;
 }
+[xmultiselect-for]
+{
+    display: none;
+}
