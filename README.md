@@ -1,6 +1,6 @@
 # XMultiSelect 简介
 多选插件（单击input后，在弹出层出选择相应的选项）
-#属性#
+# 属性 #
 <table>
 <tr>
 <td>属性名</td>
@@ -23,7 +23,7 @@
 <td>每一项的class</td>
 </tr>
 </table>
-#方法#
+# 方法 #
 <table>
 <tr>
 <td>方法名</td>
@@ -49,4 +49,5 @@
 </tr>
 </table>
 # 预览图
+
 ![](https://raw.githubusercontent.com/xucongli1989/XMultiSelect/master/XMultiSelect/img1.jpg)
